@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<title>Dental AI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body, h1, h2, h3, h4, h5, h6 {
+        font-family: "Montserrat", sans-serif
+    }
+
+    .w3-row-padding img {
+        margin-bottom: 12px
+    }
+
+    /* Set the width of the sidebar to 120px */
+    .w3-sidebar {
+        width: 120px;
+        background: #222;
+    }
+
+    /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+    #main {
+        margin-left: 120px
+    }
+
+    /* Remove margins from "page content" on small screens */
+    @media only screen and (max-width: 600px) {
+        #main {
+            margin-left: 0
+        }
+    }
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-bar w3-black w3-wide w3-padding">
+    <a href="#home" class="w3-bar-item w3-button">Dental <b>AI</b></a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+        <a href="#projects" class="w3-bar-item w3-button">Patients</a>
+        <a href="#about" class="w3-bar-item w3-button">Diagnosis</a>
+        <a href="#contact" class="w3-bar-item w3-button">Support</a>
+    </div>
+</div>
+
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-small w3-hide-small w3-center">
+    <button onclick="changeLayer('teeth')" id="btn-teeth" class="w3-bar-item w3-button w3-padding-large">TEETH</button>
+    <button href="#about" class="w3-bar-item w3-button w3-padding-large">
+        LESIONS
+    </button>
+    <button href="#about" class="w3-bar-item w3-button w3-padding-large">
+        ROOT CANAL IMPLANT
+    </button>
+    <button href="#" class="w3-bar-item w3-button w3-padding-large w3-light-gray">
+        <i class="fa fa-eye w3-xlarge"></i><br>
+        SHOW ALL
+    </button>
+    <button onclick="clearLayers()" class="w3-bar-item w3-button w3-padding-large w3-light-gray">
+        <i class="fa fa-refresh w3-xlarge"></i><br>
+        CLEAR
+    </button>
+    <button href="#" class="w3-bar-item w3-button w3-padding-large w3-light-gray">
+        <i class="fa fa-download w3-xlarge"></i><br>
+        EXPORT CURRENT VIEW
+    </button>
+</nav>
+
+<!-- Page Content -->
+<div id="main" class="w3-black">
+
+    <!-- X-ray -->
+    <div class="w3-center" id="home">
+        <img src="img/sample-dental-x-ray.jpg" id="dental-x-ray" alt="dental-x-ray" width="100%" class="w3-image">
+    </div>
+
+    <!-- Detailed info -->
+    <div class="w3-content w3-padding-64">
+        <h2 class="w3-text-light-grey">Patient EA001</h2>
+        <hr style="width:200px" class="w3-opacity">
+        <p>I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+            id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+        </p>
+    </div>
+
+    <!-- END PAGE CONTENT -->
+</div>
+
+<script language="javascript">
+    function changeLayer(layer_name) {
+        document.getElementById("dental-x-ray").src = "img/layers/" + layer_name + ".png";
+        document.getElementById("btn-" + layer_name).classList.add("w3-dark-gray");
+    }
+</script>
+
+<script language="javascript">
+    function clearLayers() {
+        document.getElementById("dental-x-ray").src = "img/sample-dental-x-ray.jpg";
+        document.getElementById("btn-teeth").classList.remove("w3-dark-gray");
+    }
+</script>
+
+</body>
+</html>
