@@ -81,88 +81,92 @@
         </div>
     </div>
 
-    <!-- X-ray layers -->
-    <div id="layers-container" class="w3-center w3-hide">
-        <div id="layer-dental-default" class="layer">
-            <img src="img/layers/sample-dental-x-ray.png" alt="layer-dental-default">
-        </div>
-        <div id="layers-images">
-            <div id="layer-teeth" class="layer w3-hide">
-                <img src="img/layers/teeth.png" alt="layer-teeth">
+    <div id="interactive-view" class="w3-row w3-hide" style="width: 100%; display: inline-flex">
+        <!-- X-ray layers -->
+        <div id="layers-container" class="w3-threequarter w3-center">
+            <div id="layer-dental-default" class="layer">
+                <img src="img/layers/sample-dental-x-ray.png" alt="layer-dental-default">
             </div>
-            <div id="layer-lesions" class="layer w3-hide">
-                <img src="img/layers/lesions.png" alt="layer-lesions" usemap="#lesions-map">
-                <map name="lesions-map">
-                    <area alt="lesion-1" title="lesion-1" onclick="openModal()" href="#"
-                          coords="328,275,303,257,294,198,305,181,329,184,351,226,351,253,342,265" shape="poly">
-                    <area alt="lesion-2" title="lesion-2" href="#"
-                          coords="547,313,546,385,562,389,570,328,576,313,568,306,555,305" shape="poly">
-                </map>
+            <div id="layers-images">
+                <div id="layer-teeth" class="layer w3-hide">
+                    <img src="img/layers/teeth.png" alt="layer-teeth">
+                </div>
+                <div id="layer-lesions" class="layer w3-hide">
+                    <img src="img/layers/lesions.png" alt="layer-lesions" usemap="#lesions-map">
+                    <map name="lesions-map">
+                        <area alt="lesion-1" title="lesion-1" onclick="openModal()" href="#"
+                              coords="328,275,303,257,294,198,305,181,329,184,351,226,351,253,342,265" shape="poly">
+                        <area alt="lesion-2" title="lesion-2" href="#"
+                              coords="547,313,546,385,562,389,570,328,576,313,568,306,555,305" shape="poly">
+                    </map>
+                </div>
+                <div id="layer-root-canal-implant" class="layer w3-hide">
+                    <img src="img/layers/root-canal-implant.png" alt="layer-root-canal-implant">
+                </div>
             </div>
-            <div id="layer-root-canal-implant" class="layer w3-hide">
-                <img src="img/layers/root-canal-implant.png" alt="layer-root-canal-implant">
+
+            <!-- Segmentation details (modal) -->
+            <div id="segmentation-details" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span onclick="closeModal()" class="close">&times;</span>
+                        <h2>Cavity</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p><b>Reliability of detection:</b> 98%</p>
+                        <p><b>Suggested action:</b> remove tooth</p>
+                        <p><b>More details</b> I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Segmentation details (modal) -->
-        <div id="segmentation-details" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span onclick="closeModal()" class="close">&times;</span>
-                    <h2>Cavity</h2>
+        <!-- Detailed info -->
+        <div id="details" class="w3-quarter">
+            <div id="text-default">
+                <h2 class="w3-text-light-grey">Patient EA001 summary info</h2>
+                <p>
+                    I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.
+                </p>
+            </div>
+            <hr>
+            <div id="layers-texts">
+                <div id="text-teeth" class="w3-hide">
+                    <h3 class="w3-text-light-grey">Teeth</h3>
+                    <hr style="width:200px" class="w3-opacity">
+                    <p>
+                        I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.
+                    </p>
                 </div>
-                <div class="modal-body">
-                    <p><b>Reliability of detection:</b> 98%</p>
-                    <p><b>Suggested action:</b> remove tooth</p>
-                    <p><b>More details</b> I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <div id="text-lesions" class="w3-hide">
+                    <h3 class="w3-text-light-grey">Detected lesions</h3>
+                    <hr style="width:200px" class="w3-opacity">
+                    <p>
+                        I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.
+                    </p>
+                </div>
+                <div id="text-root-canal-implant" class="w3-hide">
+                    <h3 class="w3-text-light-grey">Detected root canal implants</h3>
+                    <hr style="width:200px" class="w3-opacity">
+                    <p>
+                        I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Detailed info -->
-    <div class="w3-content w3-padding-64">
-        <div id="text-default">
-            <h2 class="w3-text-light-grey">Patient EA001 summary info</h2>
-            <hr style="width:200px" class="w3-opacity">
-            <p>
-                I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat.
-            </p>
-        </div>
-        <hr>
-        <div id="layers-texts">
-            <div id="text-teeth" class="w3-hide">
-                <h2 class="w3-text-light-grey">Details of teeth</h2>
-                <hr style="width:200px" class="w3-opacity">
-                <p>
-                    I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat.
-                </p>
-            </div>
-            <div id="text-lesions" class="w3-hide">
-                <h2 class="w3-text-light-grey">Details of lesions</h2>
-                <hr style="width:200px" class="w3-opacity">
-                <p>
-                    I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat.
-                </p>
-            </div>
-            <div id="text-root-canal-implant" class="w3-hide">
-                <h2 class="w3-text-light-grey">Details of root canal implants</h2>
-                <hr style="width:200px" class="w3-opacity">
-                <p>
-                    I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat.
-                </p>
-            </div>
-        </div>
     </div>
 
     <!-- END PAGE CONTENT -->

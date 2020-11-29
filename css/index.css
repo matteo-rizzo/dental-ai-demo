@@ -14,16 +14,17 @@ body, h1, h2, h3, h4, h5, h6 {
 #layers-images {
     background-color: #222222;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
 }
 
 #layers-container img {
     max-height: 900px;
     margin: auto;
     padding: 2%;
-    position: absolute;
+    position: fixed;
     top: 50%;
-    left: 50%;
+    left: 42.5%;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -116,6 +117,10 @@ map {
 .modal-body {
     padding: 2px 16px;
     color: #222222;
+}
+
+#details {
+    padding: 2.5%;
 }
 
 /* Remove margins from "page content" on small screens */

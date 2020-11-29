@@ -19,7 +19,7 @@ function readURL(input) {
 
 function confirmUpload() {
     document.getElementById("file-upload").classList.add("w3-hide");
-    document.getElementById("layers-container").classList.remove("w3-hide");
+    document.getElementById("interactive-view").classList.remove("w3-hide");
 }
 
 function removeUpload() {
