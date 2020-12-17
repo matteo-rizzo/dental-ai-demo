@@ -3,14 +3,11 @@
 <title>Dental AI</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/file-upload.css">
+<link rel="stylesheet" href="css/master.css">
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="js/layers.js"></script>
 <script src="js/file-upload.js"></script>
+<script src="js/sidenav.js"></script>
 
 <body>
 
@@ -25,38 +22,36 @@
     </div>
 </div>
 
-<!-- Icon Bar (Sidebar - hidden on small screens) -->
-<nav class="w3-sidebar w3-bar-block w3-white w3-small w3-hide-small w3-center">
-    <div id="nav-layers">
-        <button onclick="toggleLayer('teeth')" id="btn-teeth" class="w3-bar-item w3-button w3-padding-large">
-            TEETH
-        </button>
-        <button onclick="toggleLayer('lesions')" id="btn-lesions" class="w3-bar-item w3-button w3-padding-large">
-            LESIONS
-        </button>
-        <button onclick="toggleLayer('root-canal-implant')" id="btn-root-canal-implant"
-                class="w3-bar-item w3-button w3-padding-large">
-            ROOT CANAL IMPLANT
-        </button>
+<nav id="sidenav" class="sidenav w3-hide">
+    <button class="dropdown-btn">Teeth <i class="nav-icon fa fa-caret-down"></i></button>
+    <div class="dropdown-container">
+        <a>Temporary teeth</a>
+        <a onclick="toggleLayer('teeth')" id="btn-teeth">Permanent teeth</a>
     </div>
+    <button class="dropdown-btn">Restorations <i class="nav-icon fa fa-caret-down"></i></button>
+    <div class="dropdown-container">
+        <a onclick="toggleLayer('root-canal-implant')" id="btn-root-canal-implant">Canal treatments</a>
+        <a>Obturations</a>
+        <a>Crowns</a>
+        <a>Implants</a>
+    </div>
+    <button class="dropdown-btn">Lesions <i class="nav-icon fa fa-caret-down"></i></button>
+    <div class="dropdown-container">
+        <a onclick="toggleLayer('lesions')" id="btn-lesions">Cavities</a>
+        <a>Periapical lesions</a>
+        <a>Bone anomalities</a>
+    </div>
+    <hr>
     <div id="nav-functions">
-        <button onclick="showAllLayers()" class="w3-bar-item w3-button w3-padding-large w3-light-gray">
-            <i class="fa fa-eye w3-xlarge"></i><br>
-            SHOW ALL
-        </button>
-        <button onclick="clearLayers()" class="w3-bar-item w3-button w3-padding-large w3-light-gray">
-            <i class="fa fa-refresh w3-xlarge"></i><br>
-            CLEAR
-        </button>
-        <button class="w3-bar-item w3-button w3-padding-large w3-light-gray">
-            <i class="fa fa-download w3-xlarge"></i><br>
-            EXPORT CURRENT VIEW
-        </button>
+        <a onclick="showAllLayers()"> Show all <i class="nav-icon fa fa-eye"></i></a>
+        <a onclick="clearLayers()"> Clear <i class="nav-icon fa fa-refresh"></i></a>
+        <a> Export <i class="nav-icon fa fa-download"></i></a>
     </div>
 </nav>
 
+
 <!-- Page Content -->
-<div id="main" class="w3-black" style="margin-left: 120px">
+<div id="main">
 
     <div id="file-upload">
         <div class="file-upload">
@@ -72,6 +67,9 @@
                 <div class="file-upload-buttons">
                     <button type="button" onclick="removeUpload()" id="remove-btn" class="confirm-image">
                         Remove <span class="image-title">Uploaded Image</span>
+                    </button>
+                    <button type="button" id="edit-btn" class="confirm-image">
+                        Edit image
                     </button>
                     <button type="button" onclick="confirmUpload()" id="confirm-btn" class="confirm-image">
                         Confirm upload
@@ -110,14 +108,23 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <span onclick="closeModal()" class="close">&times;</span>
-                        <h2>Cavity</h2>
+                        <h2>Cavity on tooth #14</h2>
                     </div>
                     <div class="modal-body">
-                        <p><b>Reliability of detection:</b> 98%</p>
-                        <p><b>Suggested action:</b> remove tooth</p>
-                        <p><b>More details</b> I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p><b>Suggested action</b></p>
+                        <p>Remove tooth.</p>
+                        <hr width="33%">
+                        <p><b>More details</b></p>
+                        <p class="w3-small">
+                            I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                            nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+                    <div class="modal-header">
+                        <p><b>The reliability of this detection is 98% </b></p>
+                        <a class="w3-small w3-btn w3-border">
+                            <i class="fa fa-info w3-margin-right"></i> How was this detection generated?</a>
                     </div>
                 </div>
             </div>
@@ -135,7 +142,7 @@
             <hr>
             <div id="layers-texts">
                 <div id="text-teeth" class="w3-hide">
-                    <h3 class="w3-text-light-grey">Teeth</h3>
+                    <h3 class="w3-text-light-grey">Permanent teeth</h3>
                     <hr style="width:200px" class="w3-opacity">
                     <p>
                         I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -145,7 +152,7 @@
                     </p>
                 </div>
                 <div id="text-lesions" class="w3-hide">
-                    <h3 class="w3-text-light-grey">Detected lesions</h3>
+                    <h3 class="w3-text-light-grey">Cavities</h3>
                     <hr style="width:200px" class="w3-opacity">
                     <p>
                         I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -155,7 +162,7 @@
                     </p>
                 </div>
                 <div id="text-root-canal-implant" class="w3-hide">
-                    <h3 class="w3-text-light-grey">Detected root canal implants</h3>
+                    <h3 class="w3-text-light-grey">Canal treatments</h3>
                     <hr style="width:200px" class="w3-opacity">
                     <p>
                         I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et

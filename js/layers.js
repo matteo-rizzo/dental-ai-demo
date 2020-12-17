@@ -3,14 +3,14 @@ function toggleLayer(layer_name) {
     let layer_img = document.getElementById("layer-" + layer_name)
     let details_text = document.getElementById("text-" + layer_name)
 
-    if (layer_btn.classList.contains("w3-dark-gray")) {
+    if (layer_btn.classList.contains("displaying")) {
         // Hide layer
-        layer_btn.classList.remove("w3-dark-gray");
+        layer_btn.classList.remove("displaying");
         layer_img.classList.add("w3-hide");
         details_text.classList.add("w3-hide");
     } else {
         // Show layer
-        layer_btn.classList.add("w3-dark-gray");
+        layer_btn.classList.add("displaying");
         layer_img.classList.remove("w3-hide");
         details_text.classList.remove("w3-hide");
     }
@@ -18,9 +18,11 @@ function toggleLayer(layer_name) {
 
 function clearLayers() {
     // Fade buttons
-    let buttons = document.getElementById("nav-layers").children;
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("w3-dark-gray");
+    let dropdowns = document.getElementsByClassName("dropdown-container");
+    for (let i = 0; i < dropdowns.length; i++) {
+        let buttons = dropdowns[i].children;
+        for (let j = 0; j < buttons.length; j++)
+            buttons[j].classList.remove("displaying");
     }
 
     // Hide image and text
@@ -38,9 +40,11 @@ function clearLayers() {
 
 function showAllLayers() {
     // Highlight buttons
-    let buttons = document.getElementById("nav-layers").children;
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.add("w3-dark-gray");
+    let dropdowns = document.getElementsByClassName("dropdown-container");
+    for (let i = 0; i < dropdowns.length; i++) {
+        let buttons = dropdowns[i].children;
+        for (let j = 0; j < buttons.length; j++)
+            buttons[j].classList.add("displaying");
     }
 
     // Show images and texts

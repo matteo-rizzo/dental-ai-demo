@@ -4,6 +4,7 @@
 }
 
 .file-upload {
+    background-color: #333333;
     padding: 5%;
     height: 100%;
 }
@@ -113,6 +114,15 @@
 .confirm-image:active {
     border: 0;
     transition: all .2s ease;
+}
+
+#edit-btn {
+    background: orange;
+    border-bottom: 4px solid darkorange;
+}
+
+#edit-btn:hover {
+    background: orange;
 }
 
 #confirm-btn {

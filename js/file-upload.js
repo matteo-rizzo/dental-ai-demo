@@ -6,7 +6,8 @@ function readURL(input) {
             console.log('e', e)
             $('.file-upload-placeholder').hide();                 // call for action element : hide
             $('.file-upload-image').attr('src', e.target.result); // image element : set src data.
-            $('.file-upload-preview').show();                     // image element's container : show
+            $('.file-upload-p' +
+                'review').show();                     // image element's container : show
             $('.image-title').html(inputFileData.name);           // set image's title
         };
         console.log('input.files[0]', input.files[0])
@@ -20,6 +21,8 @@ function readURL(input) {
 function confirmUpload() {
     document.getElementById("file-upload").classList.add("w3-hide");
     document.getElementById("interactive-view").classList.remove("w3-hide");
+    document.getElementById("main").style.marginLeft = "150px";
+    document.getElementById("sidenav").classList.remove("w3-hide");
 }
 
 function removeUpload() {

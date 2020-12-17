@@ -1,0 +1,29 @@
+#layers-images {
+    background-color: #222222;
+    background-size: cover;
+    min-height: 100vh;
+    height: 100%;
+}
+
+#layers-container img {
+    max-height: 900px;
+    margin: auto;
+    padding: 2%;
+    position: fixed;
+    top: 50%;
+    left: 44%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+}
+
+map {
+    display: inline;
+}
+
+#layer-dental-default img {
+    opacity: 1;
+}
