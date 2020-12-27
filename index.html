@@ -25,26 +25,26 @@
 <nav id="sidenav" class="sidenav w3-hide">
     <button class="dropdown-btn">Teeth <i class="nav-icon fa fa-caret-down"></i></button>
     <div class="dropdown-container">
-        <a>Temporary teeth</a>
-        <a onclick="toggleLayer('teeth')" id="btn-teeth">Permanent teeth</a>
+        <a onclick="toggleLayer('permanent-teeth')" id="btn-permanent-teeth">Permanent teeth</a>
+        <a class="disabled">Temporary teeth</a>
     </div>
     <button class="dropdown-btn">Restorations <i class="nav-icon fa fa-caret-down"></i></button>
     <div class="dropdown-container">
-        <a onclick="toggleLayer('root-canal-implant')" id="btn-root-canal-implant">Canal treatments</a>
-        <a>Obturations</a>
-        <a>Crowns</a>
-        <a>Implants</a>
+        <a onclick="toggleLayer('canal-treatments')" id="btn-canal-treatments">Canal treatments</a>
+        <a class="disabled">Crowns</a>
+        <a onclick="toggleLayer('implants')" id="btn-implants">Implants</a>
+        <a onclick="toggleLayer('obturations')" id="btn-obturations">Obturations</a>
     </div>
     <button class="dropdown-btn">Lesions <i class="nav-icon fa fa-caret-down"></i></button>
     <div class="dropdown-container">
-        <a onclick="toggleLayer('lesions')" id="btn-lesions">Cavities</a>
-        <a>Periapical lesions</a>
-        <a>Bone anomalities</a>
+        <a class="disabled">Bone anomalities</a>
+        <a class="disabled">Cavities</a>
+        <a onclick="toggleLayer('periapical-lesions')" id="btn-periapical-lesions">Periapical lesions</a>
     </div>
     <hr>
     <div id="nav-functions">
         <a onclick="showAllLayers()"> Show all <i class="nav-icon fa fa-eye"></i></a>
-        <a onclick="clearLayers()"> Clear <i class="nav-icon fa fa-refresh"></i></a>
+        <a onclick="clearAllLayers()"> Clear <i class="nav-icon fa fa-refresh"></i></a>
         <a> Export <i class="nav-icon fa fa-download"></i></a>
     </div>
 </nav>
@@ -63,17 +63,29 @@
             </div>
 
             <div class="file-upload-preview">
-                <img class="file-upload-image" src="#" alt="your image"/>
-                <div class="file-upload-buttons">
-                    <button type="button" onclick="removeUpload()" id="remove-btn" class="confirm-image">
-                        Remove <span class="image-title">Uploaded Image</span>
+                <img id="file-upload-image" class="file-upload-image" src="#" alt="your image"/>
+                <div style="display: inline-grid">
+                    <div id="file-upload-buttons">
+                        <button type="button" onclick="removeUpload()" id="remove-btn" class="confirm-image">
+                            Remove <span class="image-title">Uploaded Image</span>
+                        </button>
+                        <button type="button" onclick="confirmUpload()" id="confirm-btn" class="confirm-image">
+                            Confirm upload
+                        </button>
+                    </div>
+                    <button type="button" onclick="autoEnhance()" id="enhance-btn" class="w3-btn w3-round w3-black">
+                        AUTO ENHANCE
                     </button>
-                    <button type="button" id="edit-btn" class="confirm-image">
-                        Edit image
-                    </button>
-                    <button type="button" onclick="confirmUpload()" id="confirm-btn" class="confirm-image">
-                        Confirm upload
-                    </button>
+                    <div id="sliders">
+                        <div class="slider-container w3-row-padding">
+                            <p>Brightness</p>
+                            <input type="range" min="1" max="100" value="50" class="slider" id="slider-brightness">
+                        </div>
+                        <div class="slider-container w3-row-padding">
+                            <p>Contrast</p>
+                            <input type="range" min="1" max="100" value="50" class="slider" id="slider-contrast">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,30 +97,14 @@
             <div id="layer-dental-default" class="layer">
                 <img src="img/layers/sample-dental-x-ray.png" alt="layer-dental-default">
             </div>
-            <div id="layers-images">
-                <div id="layer-teeth" class="layer w3-hide">
-                    <img src="img/layers/teeth.png" alt="layer-teeth">
-                </div>
-                <div id="layer-lesions" class="layer w3-hide">
-                    <img src="img/layers/lesions.png" alt="layer-lesions" usemap="#lesions-map">
-                    <map name="lesions-map">
-                        <area alt="lesion-1" title="lesion-1" onclick="openModal()" href="#"
-                              coords="328,275,303,257,294,198,305,181,329,184,351,226,351,253,342,265" shape="poly">
-                        <area alt="lesion-2" title="lesion-2" href="#"
-                              coords="547,313,546,385,562,389,570,328,576,313,568,306,555,305" shape="poly">
-                    </map>
-                </div>
-                <div id="layer-root-canal-implant" class="layer w3-hide">
-                    <img src="img/layers/root-canal-implant.png" alt="layer-root-canal-implant">
-                </div>
-            </div>
+            <div id="layers-images"></div>
 
             <!-- Segmentation details (modal) -->
             <div id="segmentation-details" class="modal">
                 <div class="modal-content">
                     <div class="modal-header">
                         <span onclick="closeModal()" class="close">&times;</span>
-                        <h2>Cavity on tooth #14</h2>
+                        <h2>Periapical lesion 1</h2>
                     </div>
                     <div class="modal-body">
                         <p><b>Suggested action</b></p>
@@ -116,9 +112,8 @@
                         <hr width="33%">
                         <p><b>More details</b></p>
                         <p class="w3-small">
-                            I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat.
+                            Periapical lesion on tooth 7. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.
                         </p>
                     </div>
                     <div class="modal-header">
@@ -131,45 +126,183 @@
         </div>
 
         <!-- Detailed info -->
-        <div id="details" class="w3-quarter">
+        <div id="details" class="w3-quarter w3-large">
             <div id="text-default">
-                <h2 class="w3-text-light-grey">Patient EA001 summary info</h2>
-                <p>
-                    I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.
-                </p>
+                <h2 class="w3-center">Patient <b>EA001</b></h2>
+                <hr>
+                <table class="w3-table w3-small">
+                    <tr>
+                        <th>Name/Surname:</th>
+                        <td>Mario Rossi</td>
+                    </tr>
+                    <tr>
+                        <th>Date of Birth:</th>
+                        <td>Dec, 21, 1985 (age 46)</td>
+                    </tr>
+                    <tr>
+                        <th>Fiscal Code:</th>
+                        <td>MQTMNU91D08F205Y</td>
+                    </tr>
+                </table>
+                <hr>
             </div>
-            <hr>
             <div id="layers-texts">
-                <div id="text-teeth" class="w3-hide">
-                    <h3 class="w3-text-light-grey">Permanent teeth</h3>
-                    <hr style="width:200px" class="w3-opacity">
-                    <p>
-                        I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        ex ea commodo consequat.
-                    </p>
+                <div id="text-permanent-teeth" class="w3-hide">
+                    <h2>Permanent teeth</h2>
+                    <table class="w3-table w3-hoverable w3-small">
+                        <tr>
+                            <th>ID</th>
+                            <th>Category</th>
+                            <th>Reliability</th>
+                        </tr>
+                        <tr onclick="openModal()">
+                            <td>1</td>
+                            <td>Tooth 1</td>
+                            <td>98.3%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Tooth 2</td>
+                            <td>96.2%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Tooth 3</td>
+                            <td>95.8%</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Tooth 4</td>
+                            <td>83.0%</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Tooth 5</td>
+                            <td>99.7%</td>
+                        </tr>
+                        <tr>
+                            <td>+13</td>
+                            <td>...</td>
+                            <td>...</td>
+                        </tr>
+                    </table>
+                    <hr>
                 </div>
-                <div id="text-lesions" class="w3-hide">
-                    <h3 class="w3-text-light-grey">Cavities</h3>
-                    <hr style="width:200px" class="w3-opacity">
-                    <p>
-                        I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        ex ea commodo consequat.
-                    </p>
+
+                <div id="text-canal-treatments" class="w3-hide">
+                    <h2>Canal Treatments</h2>
+                    <table class="w3-table w3-hoverable w3-small">
+                        <tr>
+                            <th>ID</th>
+                            <th>Category</th>
+                            <th>Reliability</th>
+                        </tr>
+                        <tr onclick="openModal()">
+                            <td>1</td>
+                            <td>Canal treatment</td>
+                            <td>98.3%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Canal treatment</td>
+                            <td>96.2%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Canal treatment</td>
+                            <td>95.8%</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Canal treatment</td>
+                            <td>83.0%</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Canal treatment</td>
+                            <td>99.7%</td>
+                        </tr>
+                        <tr>
+                            <td>+1</td>
+                            <td>...</td>
+                            <td>...</td>
+                        </tr>
+                    </table>
+                    <hr>
                 </div>
-                <div id="text-root-canal-implant" class="w3-hide">
-                    <h3 class="w3-text-light-grey">Canal treatments</h3>
-                    <hr style="width:200px" class="w3-opacity">
-                    <p>
-                        I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        ex ea commodo consequat.
-                    </p>
+
+                <div id="text-obturations" class="w3-hide">
+                    <h2>Obturations</h2>
+                    <table class="w3-table w3-hoverable w3-small">
+                        <tr>
+                            <th>ID</th>
+                            <th>Category</th>
+                            <th>Reliability</th>
+                        </tr>
+                        <tr onclick="openModal()">
+                            <td>1</td>
+                            <td>Obturation</td>
+                            <td>98.3%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Obturation</td>
+                            <td>96.2%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Obturation</td>
+                            <td>95.8%</td>
+                        </tr>
+                    </table>
+                    <hr>
+                </div>
+
+                <div id="text-periapical-lesions" class="w3-hide">
+                    <h2>Periapical Lesions</h2>
+                    <table class="w3-table w3-hoverable w3-small">
+                        <tr>
+                            <th>ID</th>
+                            <th>Category</th>
+                            <th>Reliability</th>
+                        </tr>
+                        <tr onmouseover="showHighlight('periapical-lesions', 1)"
+                            onmouseout="hideHighlight('periapical-lesions', 1)"
+                            onclick="openModal()">
+                            <td>1</td>
+                            <td>Periapical Lesion</td>
+                            <td>98.3%</td>
+                        </tr>
+                        <tr onmouseover="showHighlight('periapical-lesions', 2)"
+                            onmouseout="hideHighlight('periapical-lesions', 2)">
+                            <td>2</td>
+                            <td>Periapical Lesion</td>
+                            <td>96.2%</td>
+                        </tr>
+                    </table>
+                    <hr>
+                </div>
+
+                <div id="text-implants" class="w3-hide">
+                    <h2>Implants</h2>
+                    <table class="w3-table w3-hoverable w3-small">
+                        <tr>
+                            <th>ID</th>
+                            <th>Category</th>
+                            <th>Reliability</th>
+                        </tr>
+                        <tr onclick="openModal()">
+                            <td>1</td>
+                            <td>Implants</td>
+                            <td>98.3%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Implants</td>
+                            <td>96.2%</td>
+                        </tr>
+                    </table>
+                    <hr>
                 </div>
             </div>
         </div>

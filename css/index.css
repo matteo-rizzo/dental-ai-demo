@@ -2,6 +2,11 @@ body, h1, h2, h3, h4, h5, h6 {
     font-family: "Montserrat", sans-serif
 }
 
+h2 {
+    font-size: 18px !important;
+    margin-bottom: 1em;
+}
+
 body {
     background-color: #111;
 }
@@ -22,6 +27,34 @@ hr {
 #details {
     background-color: #111111;
     padding: 2.5%;
+}
+
+#layers-texts hr {
+    width: 200px;
+    opacity: 0.7;
+}
+
+#layers-texts table tr:first-child:hover {
+    background-color: #777;
+    color: #ffffff;
+}
+
+#layers-texts table tr:nth-child(even) {
+    background-color: #444;
+}
+
+#layers-texts table tr:nth-child(odd) {
+    background-color: #777;
+}
+
+#layers-texts table tr:hover {
+    color: #111111;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+#layers-texts table td, #layers-texts table th {
+    text-align: center;
 }
 
 /* Remove margins from "page content" on small screens */

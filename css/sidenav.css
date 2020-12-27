@@ -38,6 +38,14 @@
     padding: 1em;
 }
 
+.disabled {
+    color: #444 !important;
+}
+
+.disabled:hover {
+    color: #444 !important;
+}
+
 .displaying {
     font-weight: bold;
     color: white !important;

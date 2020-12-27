@@ -17,7 +17,6 @@ function readURL(input) {
     }
 }
 
-
 function confirmUpload() {
     document.getElementById("file-upload").classList.add("w3-hide");
     document.getElementById("interactive-view").classList.remove("w3-hide");
@@ -30,6 +29,10 @@ function removeUpload() {
     $('.file-upload-input').replaceWith($clone);              // reset input: replaced by empty clone
     $('.file-upload-placeholder').show();                     // show placeholder
     $('.file-upload-preview').hide();                         // hide preview
+}
+
+function autoEnhance() {
+    document.getElementById("file-upload-image").src = "img/layers/sample-dental-x-ray.png"
 }
 
 $('.file-upload-placeholder').bind('dragover', function () {
