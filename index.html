@@ -73,17 +73,20 @@
                             Confirm upload
                         </button>
                     </div>
-                    <button type="button" onclick="autoEnhance()" id="enhance-btn" class="w3-btn w3-round w3-black">
+                    <button type="button" onclick="autoEnhance()" id="enhance-btn"
+                            class="w3-btn w3-card-4 w3-round w3-black">
                         AUTO ENHANCE
                     </button>
                     <div id="sliders">
                         <div class="slider-container w3-row-padding">
                             <p>Brightness</p>
-                            <input type="range" min="1" max="100" value="50" class="slider" id="slider-brightness">
+                            <input oninput="sliderBrightness()" type="range" min="1" max="200" value="100"
+                                   class="slider" id="slider-brightness">
                         </div>
                         <div class="slider-container w3-row-padding">
                             <p>Contrast</p>
-                            <input type="range" min="1" max="100" value="50" class="slider" id="slider-contrast">
+                            <input oninput="sliderContrast()" type="range" min="1" max="500" value="250" class="slider"
+                                   id="slider-contrast">
                         </div>
                     </div>
                 </div>

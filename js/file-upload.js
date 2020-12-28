@@ -42,3 +42,15 @@ $('.file-upload-placeholder').bind('dragover', function () {
 $('.file-upload-placeholder').bind('dragleave', function () {
     $('.file-upload-placeholder').removeClass('image-dropping');
 });
+
+function sliderBrightness() {
+    const v = document.getElementById("slider-brightness").value / 100;
+    let img = document.getElementById("file-upload-image");
+    img.style.filter = "brightness(" + v.toString() + ")";
+}
+
+function sliderContrast() {
+    const v = document.getElementById("slider-contrast").value / 100;
+    let img = document.getElementById("file-upload-image");
+    img.style.filter = "contrast(" + v.toString() + ")";
+}
