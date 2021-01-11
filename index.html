@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Dental AI</title>
+<title>AIDÍ</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/master.css">
@@ -8,16 +8,16 @@
 <script src="js/layers.js"></script>
 <script src="js/file-upload.js"></script>
 <script src="js/sidenav.js"></script>
+<script src="js/loading-bar.js"></script>
 
 <body>
 
 <!-- Navbar (sit on top) -->
-<div class="w3-bar w3-black w3-wide w3-padding">
-    <a href="#layers-container" class="w3-bar-item w3-button">Dental <b>AI</b></a>
-    <!-- Float links to the right. Hide them on small screens -->
+<div class="w3-bar w3-black w3-padding">
+    <a href="layers-container" class="w3-wide w3-bar-item w3-button"><b>AIDÍ</b></a>
     <div class="w3-right w3-hide-small">
-        <a href="#patients-list" class="w3-bar-item w3-button">Patients list</a>
-        <a href="#diagnosis" class="w3-bar-item w3-button">Diagnosis</a>
+        <a href="#patients-list" class="w3-bar-item w3-button">Patients List</a>
+        <a href="#diagnosis" class="w3-bar-item w3-button">Diagnosis Archive</a>
         <a href="#support" class="w3-bar-item w3-button">Support</a>
     </div>
 </div>
@@ -31,8 +31,8 @@
     <button class="dropdown-btn">Restorations <i class="nav-icon fa fa-caret-down"></i></button>
     <div class="dropdown-container">
         <a onclick="toggleLayer('canal-treatments')" id="btn-canal-treatments">Canal treatments</a>
-        <a class="disabled">Crowns</a>
-        <a onclick="toggleLayer('implants')" id="btn-implants">Implants</a>
+        <a onclick="toggleLayer('crowns')" id="btn-crowns">Crowns</a>
+        <a class="disabled">Implants</a>
         <a onclick="toggleLayer('obturations')" id="btn-obturations">Obturations</a>
     </div>
     <button class="dropdown-btn">Lesions <i class="nav-icon fa fa-caret-down"></i></button>
@@ -69,7 +69,7 @@
                         <button type="button" onclick="removeUpload()" id="remove-btn" class="confirm-image">
                             Remove <span class="image-title">Uploaded Image</span>
                         </button>
-                        <button type="button" onclick="confirmUpload()" id="confirm-btn" class="confirm-image">
+                        <button type="button" onclick="imgAnalysis()" id="confirm-btn" class="confirm-image">
                             Confirm upload
                         </button>
                     </div>
@@ -90,6 +90,15 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-bar" class="w3-container">
+        <div style="position:relative; top:50%">
+            <h1>ANALYZING UPLOADED IMAGE...</h1>
+            <div style="background-color: #333">
+                <div id="img-analysis-bar"></div>
             </div>
         </div>
     </div>
@@ -286,8 +295,8 @@
                     <hr>
                 </div>
 
-                <div id="text-implants" class="w3-hide">
-                    <h2>Implants</h2>
+                <div id="text-crowns" class="w3-hide">
+                    <h2>Crowns</h2>
                     <table class="w3-table w3-hoverable w3-small">
                         <tr>
                             <th>ID</th>
@@ -296,12 +305,12 @@
                         </tr>
                         <tr onclick="openModal()">
                             <td>1</td>
-                            <td>Implants</td>
+                            <td>Crown</td>
                             <td>98.3%</td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>Implants</td>
+                            <td>Crown</td>
                             <td>96.2%</td>
                         </tr>
                     </table>

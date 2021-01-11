@@ -40,8 +40,9 @@ function clearAllLayers() {
         for (let j = 0; j < buttons.length; j++) {
             let button = buttons[j];
             const layer_name = button.id.split("-").slice(1).join("-");
-
-            if (button.hasAttribute("onclick") && !document.getElementById(layer_name)) {
+            console.log(layer_name)
+            if (button.hasAttribute("onclick") && document.getElementById("layer-" + layer_name)) {
+                console.log("Removing...")
                 button.classList.remove("displaying");
                 document.getElementById("layer-" + layer_name).remove();
                 document.getElementById("text-" + layer_name).classList.add("w3-hide");
